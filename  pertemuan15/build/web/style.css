@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    background: white;
+    border: 2px solid #999;
+}
+
+.header {
+    text-align: center;
+    background: #eeeeee;
+    padding: 18px 0;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.header h4 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.layout {
+    display: flex;
+    min-height: 500px;
+}
+
+.sidebar {
+    width: 185px;
+    background: #eaffea;
+    padding: 15px;
+}
+
+.sidebar-box {
+    background: linear-gradient(to right, #eeeeee, #c9c9c9);
+    border-radius: 10px;
+    padding: 20px 0;
+    min-height: 360px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.sidebar h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 6px;
+    font-size: 18px;
+}
+
+.sidebar a {
+    display: block;
+    width: 110px;
+    margin: 0 auto 18px auto;
+    padding: 2px;
+    text-align: center;
+    background: #d9d9f2;
+    color: #a34aa3;
+    text-decoration: underline;
+    border-left: 5px solid #4b8b2f;
+    border-right: 5px solid #4b8b2f;
+    font-size: 18px;
+}
+
+.content {
+    flex: 1;
+    padding: 18px 30px;
+}
+
+.topmenu {
+    width: 650px;
+    margin: 0 auto 55px auto;
+    background: linear-gradient(#eeeeee, #cfcfcf);
+    padding: 12px 0;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 7px 16px #aaa;
+}
+
+.topmenu a {
+    display: inline-block;
+    margin: 0 18px;
+    color: #666;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.judul-form {
+    text-align: center;
+    margin-bottom: 18px;
+    font-size: 28px;
+}
+
+.form-nilai {
+    width: 520px;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.row label {
+    width: 170px;
+    text-align: right;
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+input {
+    height: 22px;
+    border: 1px solid #999;
+}
+
+button {
+    height: 28px;
+    margin-left: 4px;
+    padding: 0 10px;
+    font-family: "Times New Roman", serif;
+    font-size: 15px;
+}
+
+.input-small {
+    width: 135px;
+}
+
+.input-long {
+    width: 250px;
+}
+
+.input-mini {
+    width: 24px;
+}
+
+.input-nilai {
+    width: 60px;
+}
+
+.tombol {
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.tombol button {
+    width: 110px;
+}
+
+.footer {
+    width: 100%;
+    background: #eeeeff;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+}
