@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover {
+    color: red;
+}
+
+nav ul {
+    list-style: none;
+    background-color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    color: white;
+    display: block;
+    padding: 10px 20px;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+input {
+    padding: 5px;
+    margin: 4px;
+}
+
+input[type=submit] {
+    background-color: #2b7cff;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+}
