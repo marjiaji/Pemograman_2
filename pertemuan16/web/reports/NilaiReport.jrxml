@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jasperReport
+    xmlns="http://jasperreports.sourceforge.net/jasperreports"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+    name="NilaiReport"
+    pageWidth="842"
+    pageHeight="595"
+    orientation="Landscape"
+    columnWidth="802"
+    leftMargin="20"
+    rightMargin="20"
+    topMargin="20"
+    bottomMargin="20">
+
+    <queryString>
+        <![CDATA[
+            SELECT 
+                m.semester,
+                m.kelas,
+                m.nim,
+                m.nama,
+                n.kode_mk,
+                n.nama_mk,
+                n.sks,
+                n.tugas,
+                n.uts,
+                n.uas,
+                ROUND((n.tugas+n.uts+n.uas)/3,2) AS nilai_akhir,
+                CASE
+                    WHEN ROUND((n.tugas+n.uts+n.uas)/3,2) >= 85 THEN 'A'
+                    WHEN ROUND((n.tugas+n.uts+n.uas)/3,2) >= 70 THEN 'B'
+                    WHEN ROUND((n.tugas+n.uts+n.uas)/3,2) >= 60 THEN 'C'
+                    ELSE 'D'
+                END AS huruf,
+                CASE
+                    WHEN ROUND((n.tugas+n.uts+n.uas)/3,2) >= 60 THEN 'Lulus'
+                    ELSE 'Tidak Lulus'
+                END AS status
+            FROM mahasiswa m
+            JOIN nilai n ON m.nim = n.nim
+            ORDER BY m.nim, n.kode_mk
+        ]]>
+    </queryString>
+
+    <field name="semester" class="java.lang.Integer"/>
+    <field name="kelas" class="java.lang.String"/>
+    <field name="nim" class="java.lang.String"/>
+    <field name="nama" class="java.lang.String"/>
+    <field name="kode_mk" class="java.lang.String"/>
+    <field name="nama_mk" class="java.lang.String"/>
+    <field name="sks" class="java.lang.Integer"/>
+    <field name="tugas" class="java.lang.Integer"/>
+    <field name="uts" class="java.lang.Integer"/>
+    <field name="uas" class="java.lang.Integer"/>
+    <field name="nilai_akhir" class="java.math.BigDecimal"/>
+    <field name="huruf" class="java.lang.String"/>
+    <field name="status" class="java.lang.String"/>
+
+    <group name="GroupMahasiswa">
+        <groupExpression><![CDATA[$F{nim}]]></groupExpression>
+
+        <groupHeader>
+            <band height="95">
+
+                <textField>
+                    <reportElement x="0" y="0" width="150" height="18"/>
+                    <textFieldExpression><![CDATA["NIM : " + $F{nim}]]></textFieldExpression>
+                </textField>
+
+                <textField>
+                    <reportElement x="0" y="20" width="300" height="18"/>
+                    <textFieldExpression><![CDATA["Nama : " + $F{nama}]]></textFieldExpression>
+                </textField>
+
+                <staticText><reportElement x="0" y="55" width="35" height="20"/><text><![CDATA[No.]]></text></staticText>
+                <staticText><reportElement x="35" y="55" width="90" height="20"/><text><![CDATA[Kode MK]]></text></staticText>
+                <staticText><reportElement x="125" y="55" width="220" height="20"/><text><![CDATA[Nama Mata Kuliah]]></text></staticText>
+                <staticText><reportElement x="345" y="55" width="45" height="20"/><text><![CDATA[SKS]]></text></staticText>
+                <staticText><reportElement x="390" y="55" width="55" height="20"/><text><![CDATA[Tugas]]></text></staticText>
+                <staticText><reportElement x="445" y="55" width="55" height="20"/><text><![CDATA[UTS]]></text></staticText>
+                <staticText><reportElement x="500" y="55" width="55" height="20"/><text><![CDATA[UAS]]></text></staticText>
+                <staticText><reportElement x="555" y="55" width="85" height="20"/><text><![CDATA[Nilai Akhir]]></text></staticText>
+                <staticText><reportElement x="640" y="55" width="55" height="20"/><text><![CDATA[Huruf]]></text></staticText>
+                <staticText><reportElement x="695" y="55" width="90" height="20"/><text><![CDATA[Status]]></text></staticText>
+
+            </band>
+        </groupHeader>
+    </group>
+
+    <title>
+        <band height="110">
+
+            <staticText>
+                <reportElement x="0" y="5" width="802" height="18"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[LAPORAN NILAI MAHASISWA]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="0" y="25" width="802" height="22"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[UNIVERSITAS PAMULANG]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="0" y="50" width="802" height="18"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Jl. Surya Kencana No.1 Pamulang, Tangerang Selatan, Banten]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="0" y="70" width="150" height="18"/>
+                <textFieldExpression><![CDATA["Semester : " + $F{semester}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="0" y="85" width="150" height="18"/>
+                <textFieldExpression><![CDATA["Kelas : " + $F{kelas}]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </title>
+
+    <detail>
+        <band height="22">
+
+            <textField>
+                <reportElement x="0" y="0" width="35" height="20"/>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+
+            <textField><reportElement x="35" y="0" width="90" height="20"/><textFieldExpression><![CDATA[$F{kode_mk}]]></textFieldExpression></textField>
+            <textField><reportElement x="125" y="0" width="220" height="20"/><textFieldExpression><![CDATA[$F{nama_mk}]]></textFieldExpression></textField>
+            <textField><reportElement x="345" y="0" width="45" height="20"/><textFieldExpression><![CDATA[$F{sks}]]></textFieldExpression></textField>
+            <textField><reportElement x="390" y="0" width="55" height="20"/><textFieldExpression><![CDATA[$F{tugas}]]></textFieldExpression></textField>
+            <textField><reportElement x="445" y="0" width="55" height="20"/><textFieldExpression><![CDATA[$F{uts}]]></textFieldExpression></textField>
+            <textField><reportElement x="500" y="0" width="55" height="20"/><textFieldExpression><![CDATA[$F{uas}]]></textFieldExpression></textField>
+            <textField><reportElement x="555" y="0" width="85" height="20"/><textFieldExpression><![CDATA[$F{nilai_akhir}]]></textFieldExpression></textField>
+            <textField><reportElement x="640" y="0" width="55" height="20"/><textFieldExpression><![CDATA[$F{huruf}]]></textFieldExpression></textField>
+            <textField><reportElement x="695" y="0" width="90" height="20"/><textFieldExpression><![CDATA[$F{status}]]></textFieldExpression></textField>
+
+        </band>
+    </detail>
+
+</jasperReport>
